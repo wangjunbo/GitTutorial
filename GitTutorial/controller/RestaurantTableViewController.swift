@@ -85,70 +85,6 @@ class RestaurantTableViewController: UITableViewController {
         }
     }
  
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let cell = tableView.cellForRow(at: indexPath) as! RestaurantTableViewCell
-//        
-//        let optionMenu = UIAlertController(title: nil , message: "What do you want to do ?", preferredStyle: .alert)
-//        
-////        let callActionHandler = { (action:UIAlertAction!) -> Void in
-////            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .alert)
-////            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-////            self.present(alertMessage, animated: true, completion: nil)
-////        }
-//        
-//        let callActionHandler = { (action:UIAlertAction!) -> Void in
-////            let alertMessage = UIAlertController(title: "Service Unavailable", message: "Sorry, the call feature is not available yet. Please retry later.", preferredStyle: .alert)
-////            alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-////            self.present(alertMessage, animated: true, completion: nil)
-//            if let url = URL(string: "tel:153-1391-221\(indexPath.row)"){
-//                if UIApplication.shared.canOpenURL(url) {
-//                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//                }else{
-//                    print("无法拨打电话")
-//                }
-//            }
-//        }
-//        
-//        let checkInAction = UIAlertAction(title: self.restaurantIsHidden[indexPath.row] ? "Check in" : "Undo Check in", style: .default, handler: {
-//            (action:UIAlertAction!) -> Void in
-//            
-//            cell.heartImage.isHidden = !self.restaurantIsHidden[indexPath.row]
-//            self.restaurantIsHidden[indexPath.row] = !self.restaurantIsHidden[indexPath.row]
-//            
-//        })
-//        
-//        let callAction = UIAlertAction(title: "打电话给 "+"153-1391-221\(indexPath.row)", style: .default, handler: callActionHandler)
-//        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        optionMenu.addAction(cancelAction)
-//        optionMenu.addAction(checkInAction)
-//        optionMenu.addAction(callAction)
-//        present(optionMenu, animated: true, completion: nil)
-//
-//        
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
-
-//    // Override to support editing the table view.
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == .delete {
-//            // Delete the row from the data source
-//            restaurant.delete(index: indexPath.row)
-//            tableView.deleteRows(at: [indexPath], with: .fade)
-////            tableView.reloadData()
-//        } else if editingStyle == .insert {
-//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-//        }
-//    }
-    
     
     override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
@@ -197,31 +133,6 @@ class RestaurantTableViewController: UITableViewController {
         return configuration
     }
 
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -229,7 +140,12 @@ class RestaurantTableViewController: UITableViewController {
     }
     
     @IBAction func unwindToHome(segue:UIStoryboardSegue){
-        dismiss(animated: true, completion: nil)
+//        dismiss(animated: true, completion: nil)
     }
+    
+ 
+//    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+//        
+//    }
 
 }
