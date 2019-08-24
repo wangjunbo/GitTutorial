@@ -227,5 +227,9 @@ class RestaurantTableViewController: UITableViewController {
         super.viewWillAppear(animated)
         navigationController?.hidesBarsOnSwipe = false
     }
+    
+    @IBAction func unwindToHome(segue:UIStoryboardSegue){
+        dismiss(animated: true, completion: nil)
+    }
 
 }

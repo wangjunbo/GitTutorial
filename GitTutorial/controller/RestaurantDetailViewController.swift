@@ -74,7 +74,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -96,6 +96,18 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             cell.descriptionLabel?.text = restaurant.description
             cell.selectionStyle = .none
             return cell
+            
+        case 3:
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RestaurantDetailSeparatorCell.self), for: indexPath) as! RestaurantDetailSeparatorCell
+            cell.titleLabel?.text = "HOW TO GET HERE"
+            cell.selectionStyle = .none
+            return cell
+        case 4:
+            let cell = tableView.dequeueReusableCell(withIdentifier: String(describing:RestaurantDetailMapCell.self), for: indexPath) as! RestaurantDetailMapCell
+            cell.configure(location: restaurant.location)
+            print("inital RestaurantDetailMapCell \(cell.mapView)")
+            cell.selectionStyle = .none
+            return cell
         default:
             fatalError("Failed to instantiate the table view cell for detail view controller")
         }
@@ -109,5 +121,34 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            let destination = segue.destination as! MapViewController
+            destination.restaurant = self.restaurant
+        }else if segue.identifier == "showReview" {
+            let destination = segue.destination as! ReviewViewController
+            destination.restaurant = self.restaurant
+        }
+    }
+    
+    @IBAction func rateRestaurant(segue:UIStoryboardSegue){
+
+        dismiss(animated: true, completion: {
+            if let rating = segue.identifier {
+                self.restaurant.rating = rating
+                self.headerView.ratingImageView.image = UIImage(named: rating)
+            }
+            
+            let scaleTransform = CGAffineTransform(scaleX: 2, y: 2)
+            self.headerView.ratingImageView.transform = scaleTransform
+            self.headerView.ratingImageView.alpha = 0
+            
+            UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.7, options: [], animations: {
+                self.headerView.ratingImageView.transform = .identity
+                self.headerView.ratingImageView.alpha = 1
+            }, completion: nil)
+        })
     }
 }

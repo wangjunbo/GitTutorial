@@ -12,6 +12,7 @@ class RestaurantDetailHeaderView: UIView {
     
     @IBOutlet var headerImageView:UIImageView!
     @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var ratingImageView:UIImageView!
     @IBOutlet var typeLabel: UILabel! {
         didSet {
             typeLabel.layer.cornerRadius = 5
