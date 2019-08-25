@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class NewRestaurantController: UITableViewController,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
     @IBOutlet var photoImageView:UIImageView!
+    var restaurant: RestaurantMO!
+    
+    var appDelegate:AppDelegate!
+    var context:NSManagedObjectContext!
     
     @IBOutlet var nameTextField:RoundedTextField! {
         didSet {
@@ -62,11 +67,11 @@ class NewRestaurantController: UITableViewController,UITextFieldDelegate,UIImage
         let phone = phoneTextField.text ?? ""
         let description = descriptionTextView.text ?? ""
         
-        print("Name:\(name)")
-        print("Type:\(type)")
-        print("Location:\(location)")
-        print("Phone:\(phone)")
-        print("Description:\(description)")
+//        print("Name:\(name)")
+//        print("Type:\(type)")
+//        print("Location:\(location)")
+//        print("Phone:\(phone)")
+//        print("Description:\(description)")
         
         if name == "" || type == "" || location == "" || phone == "" || description == "" {
             
@@ -76,6 +81,22 @@ class NewRestaurantController: UITableViewController,UITextFieldDelegate,UIImage
             present(alertController, animated: true, completion: nil)
             
         }
+        
+        restaurant = RestaurantMO(context: context )
+        restaurant.name = name
+        restaurant.type = type
+        restaurant.location = location
+        restaurant.phone = phone
+        restaurant.summary = description
+        restaurant.isVisited = false
+        
+        if let restaurantImage = photoImageView.image {
+            restaurant.image = restaurantImage.pngData()
+        }
+        
+        print("Saving data to context ...")
+        appDelegate.saveContext()
+  
         return
     }
     
@@ -91,6 +112,9 @@ class NewRestaurantController: UITableViewController,UITextFieldDelegate,UIImage
                 NSAttributedString.Key.font : customFont
             ]
         }
+        
+        appDelegate = getAppDelegate()
+        context = getContext()
     }
     
    
@@ -113,7 +137,7 @@ class NewRestaurantController: UITableViewController,UITextFieldDelegate,UIImage
                 if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
                     let imagePicker = UIImagePickerController()
                     imagePicker.allowsEditing = false
-                    imagePicker.sourceType = .photoLibrary
+                    imagePicker.sourceType = .savedPhotosAlbum
                     imagePicker.delegate = self
                     self.present(imagePicker,animated: true,completion: nil)
                 }
@@ -168,6 +192,12 @@ class NewRestaurantController: UITableViewController,UITextFieldDelegate,UIImage
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        performSegue(withIdentifier: "unwindToHome", sender: self)
+        
+        let now = Date()
+        save(UIBarButtonItem())
+        let now1 = Date()
+        let diff = now1.compare(now)
+        print(diff)
     }
 
 }

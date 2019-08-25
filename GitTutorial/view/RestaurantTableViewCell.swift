@@ -10,11 +10,12 @@ import UIKit
 
 class RestaurantTableViewCell: UITableViewCell {
     
-    var imageName:String = "" {
-        didSet {
-            thumbnailImageView.image = UIImage(named: imageName)
-        }
-    }
+    var imageName:String!
+//    = "" {
+//        didSet {
+//            thumbnailImageView.image = UIImage(named: imageName)
+//        }
+//    }
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var locationLabel: UILabel! {
         didSet {

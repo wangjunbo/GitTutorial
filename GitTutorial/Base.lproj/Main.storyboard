@@ -252,7 +252,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="W38-8f-uWW">
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="100"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mu2-Rc-rd7">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cafe Deadend" translatesAutoresizingMaskIntoConstraints="NO" id="mu2-Rc-rd7">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="100" id="rOJ-3A-A6d"/>
@@ -326,15 +326,36 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Foot Pin" largeTitleDisplayMode="always" id="SfG-nR-IsJ">
                         <barButtonItem key="backBarButtonItem" title="   " id="qQv-8O-dos"/>
-                        <barButtonItem key="rightBarButtonItem" title="   +  " id="8HS-I1-V12">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="rightBarButtonItem" image="add" id="8HS-I1-V12">
+                            <color key="tintColor" red="0.97700482606887817" green="0.54779189825057983" blue="0.035924959927797318" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <segue destination="thN-bq-Ax7" kind="presentation" identifier="addRestaurant" id="5pE-vo-vAs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="empytRestuarantView" destination="DLY-BR-oHL" id="hQh-uS-y1s"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ule-4G-F37" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="DLY-BR-oHL">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="500"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="empty" translatesAutoresizingMaskIntoConstraints="NO" id="Tv4-mF-tYe">
+                            <rect key="frame" x="16" y="120" width="334.33333333333331" height="372"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Tv4-mF-tYe" secondAttribute="height" multiplier="80:89" id="n74-cS-g7o"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Tv4-mF-tYe" firstAttribute="leading" secondItem="0PF-R0-YRS" secondAttribute="leading" constant="28" id="LJC-0M-brb"/>
+                        <constraint firstItem="Tv4-mF-tYe" firstAttribute="top" secondItem="0PF-R0-YRS" secondAttribute="top" constant="100" id="dmP-ki-y5I"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="0PF-R0-YRS"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="2112" y="793"/>
         </scene>
@@ -1042,16 +1063,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="New Restaurant" id="Yru-Ig-Q0L">
-                        <barButtonItem key="leftBarButtonItem" title="close" id="nUs-16-mcz">
+                        <barButtonItem key="leftBarButtonItem" id="nUs-16-mcz">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <segue destination="AhD-LR-bH2" kind="show" identifier="unwindToHome" id="tdW-4D-GjE"/>
-                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="save" id="E87-TL-yjv">
                             <color key="tintColor" red="0.039215686270000001" green="0.37647058820000001" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="save:" destination="aCy-fw-HYE" id="t6t-ps-Y1z"/>
+                                <segue destination="AhD-LR-bH2" kind="show" id="jWX-VR-y9G"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1194,10 +1213,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Cafe Deadend" width="426.66665649414062" height="426.66665649414062"/>
+        <image name="add" width="32" height="32"/>
         <image name="angry" width="78" height="103"/>
         <image name="background" width="375" height="667"/>
         <image name="cool" width="78" height="83"/>
         <image name="cross" width="33" height="32"/>
+        <image name="empty" width="310" height="372"/>
         <image name="happy" width="78" height="86"/>
         <image name="heart-tick" width="22" height="21"/>
         <image name="love" width="78" height="82"/>
@@ -1209,6 +1231,6 @@
         <image name="user3" width="100" height="139"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="tdW-4D-GjE"/>
+        <segue reference="jWX-VR-y9G"/>
     </inferredMetricsTieBreakers>
 </document>

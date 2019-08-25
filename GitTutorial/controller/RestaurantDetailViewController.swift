@@ -19,7 +19,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
 //    @IBOutlet weak var typeLabel: UILabel!
 //    @IBOutlet weak var locationLabel: UILabel!
 
-    lazy var restaurant:Restaurant = Restaurant()
+    lazy var restaurant:RestaurantMO = RestaurantMO()
 //    var name = ""
 //    var type = ""
 //    var location = ""
@@ -42,10 +42,10 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         
         // Do any additional setup after loading the view.
         
-        headerView.headerImageView.image = UIImage(named: restaurant.image)
+        headerView.headerImageView.image = UIImage(data: restaurant.image!)
         headerView.nameLabel.text = restaurant.name
         headerView.typeLabel.text = restaurant.type
-        headerView.heartImageView.isHidden = restaurant.isHidden
+        headerView.heartImageView.isHidden = restaurant.isVisited
         
 //        restaurantImageView.image = UIImage(named: resturant.image)
 //        nameLabel.text = resturant.name
@@ -55,7 +55,6 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         navigationItem.largeTitleDisplayMode = .never
         tableView.separatorStyle = .none
         
-
     }
     
 
@@ -93,7 +92,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: RestaurantDetailTextCell.self), for: indexPath) as! RestaurantDetailTextCell
-            cell.descriptionLabel?.text = restaurant.description
+            cell.descriptionLabel?.text = restaurant.summary
             cell.selectionStyle = .none
             return cell
             
@@ -104,7 +103,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
             return cell
         case 4:
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing:RestaurantDetailMapCell.self), for: indexPath) as! RestaurantDetailMapCell
-            cell.configure(location: restaurant.location)
+            cell.configure(location: restaurant.location ?? "")
             print("inital RestaurantDetailMapCell \(cell.mapView)")
             cell.selectionStyle = .none
             return cell

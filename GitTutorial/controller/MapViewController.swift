@@ -13,7 +13,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
 
     @IBOutlet var mapView: MKMapView!
     
-    var restaurant = Restaurant()
+    var restaurant = RestaurantMO()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +29,7 @@ class MapViewController: UIViewController,MKMapViewDelegate {
 
         // Do any additional setup after loading the view.
         let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(restaurant.location, completionHandler: {placeMarks , error in
+        geoCoder.geocodeAddressString(restaurant.location!, completionHandler: {placeMarks , error in
             if let error = error {
                 print(error)
                 return

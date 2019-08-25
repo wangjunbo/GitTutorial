@@ -8,6 +8,7 @@
 
 import Foundation
 import ContactsUI
+import CoreData
 
 extension CNContact {
     open func displayName() -> String {
@@ -21,10 +22,19 @@ protocol Object {
 
 extension UIViewController {
     
-    func getActionConfiguration(tableView:UITableView, data:Object, indexPath:IndexPath,sharedActivityItems:[Any]) -> UISwipeActionsConfiguration{
+    func getAppDelegate() -> AppDelegate {
+        return (UIApplication.shared.delegate as? AppDelegate)!
+    }
+    
+    func getContext() -> NSManagedObjectContext {
+        return getAppDelegate().persistentContainer.viewContext
+    }
+
+    func getActionConfiguration(tableView:UITableView, data:[RestaurantMO], indexPath:IndexPath,sharedActivityItems:[Any]) -> UISwipeActionsConfiguration{
         let deleteAction = UIContextualAction(style: .destructive, title: "") {
             (action,sourceView,completionHandler) -> Void in
-            data.delete(index: indexPath.row)
+//            data.delete(index: indexPath.row)
+//            data.remove(at: indexPath.row)
 //            data.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
