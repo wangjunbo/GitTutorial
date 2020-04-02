@@ -20,8 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let backButtonImage = UIImage(named: "back")
         UINavigationBar.appearance().backIndicatorImage = backButtonImage
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+//        GADMobileAds.sharedInstance().start(completionHandler: nil)
         
+//        UITabBar.appearance().tintColor = UIColor.white
+//        UITabBar.appearance().backgroundColor = UIColor.black
         return true
     }
 

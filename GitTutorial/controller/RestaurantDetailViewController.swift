@@ -14,16 +14,8 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var headerView:RestaurantDetailHeaderView!
-    
-//    @IBOutlet weak var nameLabel: UILabel!
-//    @IBOutlet weak var typeLabel: UILabel!
-//    @IBOutlet weak var locationLabel: UILabel!
 
     lazy var restaurant:RestaurantMO = RestaurantMO()
-//    var name = ""
-//    var type = ""
-//    var location = ""
-//    var restaurantName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,26 +39,14 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
         headerView.typeLabel.text = restaurant.type
         headerView.heartImageView.isHidden = restaurant.isVisited
         
-//        restaurantImageView.image = UIImage(named: resturant.image)
-//        nameLabel.text = resturant.name
-//        typeLabel.text = resturant.type
-//        locationLabel.text = resturant.location
-    
+        if let rating = restaurant.rating {
+            headerView.ratingImageView.image = UIImage(named: rating)
+        }
+        
         navigationItem.largeTitleDisplayMode = .never
         tableView.separatorStyle = .none
-        
-    }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -149,5 +129,7 @@ class RestaurantDetailViewController: UIViewController, UITableViewDataSource, U
                 self.headerView.ratingImageView.alpha = 1
             }, completion: nil)
         })
+        
+        self.getAppDelegate().saveContext()
     }
 }

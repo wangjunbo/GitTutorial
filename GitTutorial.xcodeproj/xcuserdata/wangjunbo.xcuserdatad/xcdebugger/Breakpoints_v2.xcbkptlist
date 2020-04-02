@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "GitTutorial/controller/RestaurantDetailViewController.swift"
-            timestampString = "588394900.9337651"
+            timestampString = "588608263.54331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "numberOfSections(in:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -30,13 +30,17 @@ extension UIViewController {
         return getAppDelegate().persistentContainer.viewContext
     }
 
-    func getActionConfiguration(tableView:UITableView, data:[RestaurantMO], indexPath:IndexPath,sharedActivityItems:[Any]) -> UISwipeActionsConfiguration{
+    func getActionConfiguration(tableView:UITableView, data:RestaurantMO,sharedActivityItems:[Any]) -> UISwipeActionsConfiguration{
         let deleteAction = UIContextualAction(style: .destructive, title: "") {
             (action,sourceView,completionHandler) -> Void in
 //            data.delete(index: indexPath.row)
 //            data.remove(at: indexPath.row)
 //            data.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            self.getContext().delete(data)
+            self.getAppDelegate().saveContext()
+            
             completionHandler(true)
         }
         
@@ -46,12 +50,12 @@ extension UIViewController {
             completionHandler(true)
             
             //for ipad
-            if let popoverController = activityController.popoverPresentationController {
-                if let cell = tableView.cellForRow(at: indexPath) {
-                    popoverController.sourceView = cell
-                    popoverController.sourceRect = cell.bounds
-                }
-            }
+//            if let popoverController = activityController.popoverPresentationController {
+//                if let cell = tableView.cellForRow(at: indexPath) {
+//                    popoverController.sourceView = cell
+//                    popoverController.sourceRect = cell.bounds
+//                }
+//            }
             
             self.present(activityController, animated: true, completion: nil)
         }

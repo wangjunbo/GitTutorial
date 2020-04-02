@@ -197,7 +197,7 @@ class NewRestaurantController: UITableViewController,UITextFieldDelegate,UIImage
         save(UIBarButtonItem())
         let now1 = Date()
         let diff = now1.compare(now)
-        print(diff)
+        print("diff \(diff.rawValue)")
     }
 
 }

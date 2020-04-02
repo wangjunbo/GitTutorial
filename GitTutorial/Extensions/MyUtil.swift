@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import AdSupport
+
+class MyUtil
+{
+    static func getIDFA() -> String? {
+        // check if advertising tracking is enabled in user’s setting
+        if ASIdentifierManager.shared().isAdvertisingTrackingEnabled {
+            return ASIdentifierManager.shared().advertisingIdentifier.uuidString
+        } else {
+            return nil
+        }
+    }
+}
+
